@@ -2,10 +2,10 @@ import { model, Schema } from 'mongoose';
 
 const UserSchema = new Schema(
   {
-    first_name: { type: String, required: true },
-    last_name: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true},
-    password: { type: String, required: true, select: false },
+    password: { type: String, required: true },
     creationTimestamp: { type: Date, required: true },
     friends: [{ type: Schema.Types.ObjectId, ref:'User'}],
     friendRequests: [{ type: Schema.Types.ObjectId, ref: "User" }],

@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles'
+
+const theme = responsiveFontSizes(createTheme())
 
 export default function Home() {
   return (

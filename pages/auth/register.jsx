@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Link from 'next/link';
 
+import { server } from '../../utils';
+
 const useStyles = makeStyles(theme => ({
   layout: {
     display: 'flex',
@@ -49,6 +51,21 @@ const Register = () => {
   });
   const [submitting, setSubmitting] = React.useState(false);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { firstName, lastName, email, password } = formData;
+    const { success, data } = await server.postAsync('/auth/register', {
+      firstName,
+      lastName,
+      email,
+      password
+    });
+    if (success) {
+      window.location.replace(data);
+      return;
+    };
+  };
+
   return (
     <main className={classes.layout}>
       <Paper className={classes.paper} elevation={2}>
@@ -62,7 +79,7 @@ const Register = () => {
             Register
           </Typography>
         </Box>
-        <form method="post" className={classes.form} noValidate>
+        <form method="post" className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
             margin="normal"
             required

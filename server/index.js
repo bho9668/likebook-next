@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser'; // Middleware that simplifies setting 
 import passport from 'passport'; // Authentication Library
 
 import router from './router';
+import { connectToDatabase } from './database/connection';
 import { initializeAuthentication } from './auth';
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -15,7 +16,7 @@ const handle = nextApp.getRequestHandler();
 
 const port = 3000;
 
-nextApp.prepare().then(() => {
+nextApp.prepare().then(async () => {
   const app = express();
 
   // Test back-end route
@@ -38,6 +39,8 @@ nextApp.prepare().then(() => {
   app.get('*', (req, res) => {
     return handle(req, res);
   });
+
+  await connectToDatabase();
 
   app.listen(port, err => {
     if (err) throw err;

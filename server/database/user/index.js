@@ -1,3 +1,6 @@
-import { getUserById } from './get';
+// House for the code that will query/update the database
 
-export { getUserById };
+import { getUserById, getUserByEmail } from './get';
+import { createUser } from './create';
+
+export { getUserById, createUser, getUserByEmail };

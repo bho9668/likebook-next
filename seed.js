@@ -25,8 +25,8 @@ function userFakeCreate() {
   // Generate random user
   const user = new User(
     {
-      first_name: faker.name.firstName(),
-      last_name: faker.name.lastName(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
       email: faker.internet.email(),
       password: 'fakePassword',
       friends: [],
