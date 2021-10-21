@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { model, Schema } from 'mongoose';
 
 const CommentSchema = new Schema(
@@ -12,6 +13,4 @@ const CommentSchema = new Schema(
   }
 );
 
-const CommentModel = model('Comment', CommentSchema);
-
-export { CommentModel };
+export const CommentModel = mongoose.models.Comment || model('Comment', CommentSchema);

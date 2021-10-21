@@ -7,7 +7,7 @@ const pipe = (...functions) => args => functions.reduce((arg, fn) => fn(arg), ar
 const initializeAuthentication = app => {
   utils.setup(); // Passport wiring
 
-  pipe(strategies.JWTStrategy)(app); // Pass the different strategies
+  pipe(strategies.FacebookStrategy, strategies.JWTStrategy)(app); // Pass the different strategies
 };
 
 export { utils, initializeAuthentication, strategies };

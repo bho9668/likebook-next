@@ -9,6 +9,8 @@ import Paper from '@material-ui/core/Paper';
 import Link from 'next/link';
 import { server } from '../../utils';
 
+import { FacebookLoginButton } from '../../components/FacebookLoginButton';
+
 const useStyles = makeStyles(theme => ({
   layout: {
     display: 'flex',
@@ -112,6 +114,10 @@ const LoginForm = () => {
               )}
               {submitting ? 'Signing in...' : 'Sign In'}
             </Button>
+            <Typography variant='overline' display='block' gutterBottom>
+                Facebook Login Provider
+            </Typography>
+            <FacebookLoginButton />
             <Link href="/auth/register">
               <a>No Account, Register</a>
             </Link>

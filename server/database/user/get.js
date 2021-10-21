@@ -1,5 +1,9 @@
 import { UserModel } from '../schema';
 
+async function getAllUsers() {
+  return await UserModel.find().exec();
+}
+
 async function getUserById(id) {
   return await UserModel.findById(id).exec();
 };
@@ -8,4 +12,8 @@ async function getUserByEmail(email) {
   return await UserModel.findOne({ email }).exec();
 };
 
-export { getUserById, getUserByEmail };
+async function getUserByProviderId(providerId) {
+  return await UserModel.findOne({ providerId }).exec();
+};
+
+export { getUserById, getUserByEmail, getUserByProviderId, getAllUsers };
