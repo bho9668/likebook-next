@@ -1,6 +1,6 @@
 # LikeBook
 
-The goal of this project is to make a copy of the main features of FaceBook.
+The goal of this project is to make a copy of the core features of FaceBook:
 - Users
 - Profiles
 - Posts
@@ -10,4 +10,8 @@ The goal of this project is to make a copy of the main features of FaceBook.
 
 ## Techs Stack
 
-To achieve this project, we'll use the MERN Stack and the NextJS React Framework
+To achieve this project, I'll use:
+- The MERN Stack (MongoDB: database, Express: back-end, React: front-end, NodeJS: front-end)
+- The NextJS Framework
+
+This project is more back-end focused.

@@ -1,4 +1,4 @@
-import { getCommentById } from './get';
+import { getCommentById, getAllComments } from './get';
 import { createComment } from './create';
 
-export { getCommentById, createComment };
+export { getCommentById, createComment, getAllComments };

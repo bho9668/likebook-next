@@ -17,7 +17,6 @@ router.post('/login', async (req, res) => {
         .json({ success: false, data: "Authentication error!" });
     };
 
-    console.log(password, user.password, user)
     if (!(await verifyPassword(password, user.password))) { // Verify the password
       console.error('Passwords do not match');
       return authenticationError();
@@ -33,7 +32,7 @@ router.post('/login', async (req, res) => {
     return res
       .status(200)
       .cookie('jwt', token, { // Create a cookie to keep user logged in
-        httpOnly: true
+        httpOnly: false
       })
       .json({
         success: true,
@@ -79,7 +78,7 @@ router.post('/register', async (req, res) => {
   return res
     .status(200)
     .cookie('jwt', token, { // Create a cookie to keep the user logged in
-      httpOnly: true
+      httpOnly: false
     })
     .json({
       success: true,

@@ -1,9 +1,11 @@
 // This node script populates the database with fake users and posts
 
-// Get arguments passed on command line
+// Get arguments passed on command line (The MongDB URI)
 const userArgs = process.argv.slice(2);
 
 const async = require('async');
+const bcrypt = require('bcrypt');
+const { hashPassword } = require('./server/auth/utils');
 const faker = require('faker');
 faker.seed(37);
 
@@ -19,6 +21,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const users = [];
 const posts = [];
+const comments = [];
 
 function userFakeCreate() {
 
@@ -28,7 +31,7 @@ function userFakeCreate() {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
-      password: 'fakePassword',
+      password: hashPassword('fakePassword'),
       friends: [],
       friendRequests: [],
       creationTimestamp: new Date().getTime(),

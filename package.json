@@ -16,6 +16,7 @@
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "faker": "^5.5.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.11",
     "next": "11.1.2",

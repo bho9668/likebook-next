@@ -16,4 +16,4 @@ const UserSchema = new Schema(
   }
 );
 
-export const UserModel = mongoose.models.User || model('User', UserSchema);
+export const UserModel = mongoose.models.User || model('User', UserSchema); //Avoid overcreation of model

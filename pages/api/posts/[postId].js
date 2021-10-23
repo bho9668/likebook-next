@@ -2,7 +2,7 @@ import { getPostById } from "../../../server/database/post";
 import { to } from 'await-to-js';
 
 export default async function handler({ query: { postId }, res }) {
-  const [err, user] = await to(getPostById(postId)); 
+  const [err, post] = await to(getPostById(postId)); 
 
   if (!post) {
     console.log('Post not found');

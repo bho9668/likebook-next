@@ -8,7 +8,7 @@ import passport from 'passport'; // Authentication Library
 
 import router from './router';
 import { connectToDatabase } from './database/connection';
-import { initializeAuthentication } from './auth';
+import { initializeAuthentication, checkUser } from './auth';
 
 const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev });
@@ -36,7 +36,21 @@ nextApp.prepare().then(async () => {
   router(app); // Add our custom routes
   initializeAuthentication(app); // Add passport startegies into pipeline
 
+  //app.get('*', checkUser);
+
   app.get('*', (req, res) => {
+    return handle(req, res);
+  });
+
+  app.put('*', (req, res) => {
+    return handle(req, res);
+  });
+
+  app.post('*', (req, res) => {
+    return handle(req, res);
+  });
+
+  app.delete('*', (req, res) => {
     return handle(req, res);
   });
 

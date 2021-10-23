@@ -34,7 +34,6 @@ const hashPassword = async (password) => {
 };
 
 const verifyPassword = async (candidate, actual) => {
-  //console.log(candidate, actual)
   return await bcrypt.compare(candidate, actual);
 };
 
