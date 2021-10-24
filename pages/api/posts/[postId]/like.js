@@ -1,4 +1,4 @@
-import { PostModel, UserModel } from "../../../server/database/schema";
+import { PostModel, UserModel } from "../../../server/database/models";
 import jwt from 'jsonwebtoken';
 
 export default async function handler(req, res) {
@@ -12,15 +12,14 @@ export default async function handler(req, res) {
     const decodedToken = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
     const user = await UserModel.findById(decodedToken.data._id).exec();
 
+    const post = await PostModel.findById(req.query.postId).exec();
+    if (!post) {
+      return res.status(404).json({ data: 'Post not found' });
+    };
+
     // Toggle like
     if (req.method === 'PUT') {
-      const postId = req.body.postId;
-      const post = await PostModel.findById(postId).exec();
-
-      if (!post) {
-        return res.status(404).json({ data: 'Post not found' });
-      };
-
+      
       if (!post.likes.includes(user._id)) {
         post.likes = [...post.likes, user._id];
       } else {
@@ -30,6 +29,6 @@ export default async function handler(req, res) {
 
       const updatePost = await post.save();
 
-      return res.status(200).json({ data: updatePost });
+      return res.status(200).json({ message:'Post liked/unliked', data: updatePost });
     }
 }

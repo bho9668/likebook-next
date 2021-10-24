@@ -1,5 +1,5 @@
-import { getPostById } from "../../../server/database/post";
-import { PostModel, UserModel } from "../../../server/database/schema";
+import { getPostById } from "../../../../server/database/post";
+import { PostModel, UserModel } from "../../../server/database/models";
 import jwt from 'jsonwebtoken';
 import { to } from 'await-to-js';
 
