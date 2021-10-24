@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { UserModel } from '../../../../server/database/schema';
+import { UserModel } from '../../../../server/database/models';
 
 export default async function handler(req, res) {
 
@@ -24,22 +24,21 @@ export default async function handler(req, res) {
     let asker = await UserModel.findById(acceptedID);
     let userFriendRequests = user.friendRequests;
 
+    if (asker.friends.includes(acceptedID)) {
+      return res.status(400).json({ success: false, data: 'Already friends' })
+    } 
+
     if (!userFriendRequests.includes(acceptedID)) {
-      return res
-        .status(400)
-        .json({ success: false, data: 'This user doesn\'t request you' })
+      return res.status(400).json({ success: false, data: 'This user doesn\'t request you' })
     }
 
-    if (!asker.friends.includes(acceptedID)) {
-      return res
-        .status(400)
-        .json({ success: false, data: 'Already friends' })
-    }
-
+    // Add friendship relation to both user
     asker.friends = [...asker.friends, userId];
     user.friends = [...user.friends, acceptedID];
 
-    user.friendRequests = user.friendRequests.filter(user => user._id !== acceptedID);
+    // Remove friendship request
+    const index = user.friendRequests.indexOf(acceptedID);
+    user.friendRequests.splice(index, 1);
 
     const updateUser = await user.save();
     const updateAsker = await asker.save();

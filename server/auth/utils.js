@@ -1,7 +1,7 @@
 import passport from 'passport';
 import jwt from 'jsonwebtoken'; // Library used to sign and verify tokens
 import bcrypt from 'bcrypt'; // Library used to hash the passwords
-import { UserModel } from '../database/schema';
+import { UserModel } from '../database/models';
 
 
 const setup = () => {

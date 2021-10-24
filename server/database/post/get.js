@@ -1,4 +1,4 @@
-import { PostModel } from '../schema';
+import { PostModel } from '../models';
 
 async function getAllPosts() {
   return await PostModel.find().exec();

@@ -1,5 +1,5 @@
 import { getAllPosts } from "../../../server/database/post";
-import { PostModel, UserModel } from "../../../server/database/schema";
+import { PostModel, UserModel } from "../../../server/database/models";
 import jwt from 'jsonwebtoken';
 
 export default async function handler(req, res) {
@@ -15,8 +15,10 @@ export default async function handler(req, res) {
 
   // Get all posts
   if (req.method === 'GET') {
+
     const posts = await getAllPosts();
     res.status(200).json({ data: posts });
+
   };
 
   // Create a post
@@ -29,10 +31,10 @@ export default async function handler(req, res) {
         creationTimestamp: new Date().getTime(),
         updateTimestamp: new Date().getTime(),
       }
-    )
+    );
 
-    return res.status(200).json({ data: post })
+    return res.status(200).json({ data: post });
 
-  }
+  };
 
 };

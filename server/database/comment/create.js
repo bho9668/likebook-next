@@ -1,4 +1,4 @@
-import { CommentModel } from '../schema'
+import { CommentModel } from '../models'
 
 async function createComment({
   post,

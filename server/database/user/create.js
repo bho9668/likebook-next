@@ -1,4 +1,4 @@
-import { UserModel } from '../schema'
+import { UserModel } from '../models'
 
 async function createUser({
   firstName,

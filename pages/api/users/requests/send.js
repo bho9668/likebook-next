@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { UserModel } from '../../../../server/database/schema'
+import { UserModel } from '../../../../server/database/models'
 
 export default async function handler(req, res) {
 
@@ -15,8 +15,6 @@ export default async function handler(req, res) {
 
   // See user friend requests
   if (req.method === 'GET') {
-    
-    const decodedToken = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET)
     return res
       .status(200)
       .json({ success: true, data: decodedToken.data.friendRequests });
