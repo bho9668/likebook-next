@@ -4,5 +4,8 @@ module.exports = {
   reactStrictMode: true,
   env: {
     BASE_API_URL: localEnv.BASE_API_URL
+  },
+  images: {
+    domains: ["cdn.fakercloud.com"],
   }
 }
